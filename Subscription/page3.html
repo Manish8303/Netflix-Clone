@@ -1,0 +1,47 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Netflix Setup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg">
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white text-gray-800 h-screen flex flex-col">
+    <header class="flex justify-between items-center p-4 border-b border-gray-200">
+      <div class="flex items-center">
+        <img alt="Netflix Logo" class="h-10" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png"/>
+      </div>
+      <div>
+        <a class="text-gray-800 font-medium" href="/LoginPage.html">Sign In</a>
+      </div>
+    </header>
+
+    <main class="flex flex-col items-center justify-center flex-grow">
+      <div class="text-center">
+        <div class="mb-4">
+          <img alt="Icons of a laptop, desktop, and mobile device" class="mx-auto" src="https://assets.nflxext.com/ffe/siteui/acquisition/simplicity/Devices.png"/>
+        </div>
+        <div class="text-gray-600 text-sm mb-2">
+          STEP 2 OF 4
+        </div>
+        <h1 class="text-2xl font-bold mb-2">
+          Finish setting up your account
+        </h1>
+        <p class="text-gray-600 mb-6">
+          Netflix is personalised for you. Create a password to watch on any device at any time.
+        </p>
+        <button class="bg-red-600 text-white py-2 px-6 rounded text-lg" onclick="window.location.href='page4.html'">
+          Next
+        </button>
+      </div>
+    </main>
+  </body>
+</html>

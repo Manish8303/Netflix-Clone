@@ -1,0 +1,84 @@
+<html>
+<head>
+  <title>Netflix - Create Password</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg">
+  <style>
+    
+    body, html {
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden; /* Prevent scrolling */
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <!-- Header -->
+  <div class="flex justify-between items-center p-4 border-b border-gray-200">
+    <div class="flex items-center">
+      <img alt="Netflix Logo" class="h-10" src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" />
+    </div>
+    <div>
+      <a class="text-gray-700" href="/LoginPage.html">Sign In</a>
+    </div>
+  </div>
+
+  <!-- Main Form -->
+  <div class="flex justify-center items-center h-screen">
+    <div class="w-full max-w-md p-8">
+      <p class="text-sm text-gray-500 mb-2">STEP 2 OF 4</p>
+      <h1 class="text-2xl font-bold mb-4">Create a password to start your membership</h1>
+      <p class="text-gray-700 mb-6">Just a few more steps and you're finished! We hate paperwork, too.</p>
+      <form id="loginForm">
+        <div class="mb-4">
+          <input class="w-full p-3 border border-gray-300 rounded" placeholder="Email" type="email" required />
+        </div>
+        <div class="mb-6">
+          <input class="w-full p-3 border border-gray-300 rounded" placeholder="Add a password" type="password" required />
+        </div>
+        <button class="w-full bg-red-600 text-white py-3 rounded font-bold" type="submit">
+          Next
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg text-center max-w-md w-full">
+      <h2 class="text-2xl font-bold mb-4 text-green-600">🎉 Subscription Started!</h2>
+      <p class="text-lg text-gray-700 mb-6">
+        Your subscription is active from <strong>April 13, 2025</strong> to <strong>May 13, 2025</strong>.
+      </p>
+      <button onclick="redirectToMain()" class="bg-red-600 text-white font-bold py-3 px-8 rounded hover:bg-red-700 transition duration-300">
+        OK
+      </button>
+    </div>
+  </div>
+  
+
+  <!-- JavaScript -->
+  <script>
+    
+      const form = document.getElementById('loginForm');
+      const modal = document.getElementById('popupModal');
+    
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        modal.classList.remove('hidden');
+      });
+    
+      function redirectToMain() {
+        localStorage.setItem('isSubscribed', 'true'); // <-- use localStorage instead
+        window.location.href = '../mainpage.html';
+      }
+      
+
+      
+    </script>
+  </script>
+  
+</body>
+</html>
