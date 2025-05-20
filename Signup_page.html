@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netflix Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: url('https://assets.nflxext.com/ffe/siteui/vlv3/7676b8b6-91f2-4cf4-9b30-2cfac607e6b2/4fa0e8c3-b064-4e24-a2f6-34fa028e91b5/IN-en-20240401-popsignuptwoweeks-perspective_alpha_website_large.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .signup-box {
+      position: relative;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 40px 40px 30px;
+      border-radius: 5px;
+      color: #fff;
+      max-width: 350px;
+      width: 100%;
+    }
+
+    .signup-box h1 {
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+
+    .signup-box input {
+      width: 100%;
+      margin-bottom: 14px;
+      padding: 12px;
+      background: #333;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 14px;
+    }
+
+    .signup-box button {
+      width: 100%;
+      padding: 14px;
+      background-color: #e50914;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .signup-box .signin-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #737373;
+    }
+
+    .signup-box .signin-link a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .signup-box .learn-more {
+      font-size: 12px;
+      color: #8c8c8c;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="signup-box">
+    <h1>Sign Up</h1>
+    <form action="login.html">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email or phone number" required />
+      <input type="password" placeholder="Password" required />
+      <input type="password" placeholder="Confirm Password" required />
+      <input type="text" placeholder="Credit or Debit Card Number" required />
+      <input type="text" placeholder="Expiration Date (MM/YY)" required />
+      <input type="text" placeholder="CVV" required />
+      <button type="submit">Create Account</button>
+    </form>
+    <div class="signin-link">
+      Already have an account? <a href="Login.html">Sign in now</a>.
+    </div>
+    <div class="learn-more">
+      This page is protected by Google reCAPTCHA to ensure you're not a bot. <a href="#">Learn more.</a>
+    </div>
+  </div>
+</body>
+</html>

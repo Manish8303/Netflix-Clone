@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Netflix</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg">
+
+  <style>
+    body {
+      background-color: #141414;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .transparent {
+  background-color: transparent !important;
+  transition: background-color 0.3s ease-in-out;
+}
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 15px;
+    }
+  
+    .navbar-brand img {
+      width: 120px;
+    }
+  
+    .hero {
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+    }
+  
+    .hero .carousel-item img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  
+    .dark-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(20, 20, 20, 0.6);
+      z-index: 1;
+    }
+  
+    .overlay-content {
+      position: relative;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+  
+    .movie-card {
+      position: relative;
+      transition: transform 0.3s;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+  
+    .movie-card:hover {
+      transform: scale(1.1);
+    }
+  
+    .movie-card img {
+      width: 100%;
+      border-radius: 5px;
+      height: 300px;
+      object-fit: cover;
+    }
+
+
+
+
+
+    .scrolling-wrapper {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px 0;
+      scroll-behavior: smooth;
+    }
+    
+    .scrolling-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .movie-card {
+      flex: 0 0 auto;
+      width: 180px; /* or whatever fits your layout */
+      margin-right: 10px;
+    }
+    
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top transparent">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix"/></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#tvshows">TV Shows</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#action">Movies</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="myListDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            My List
+          </a>
+          <ul class="dropdown-menu bg-dark" aria-labelledby="myListDropdown">
+            <li><a class="dropdown-item text-white" href="#tvShows">TV Shows</a></li>
+            <li><a class="dropdown-item text-white" href="#comedyMovies">Comedy</a></li>
+            <li><a class="dropdown-item text-white" href="#horrorMovies">Horror</a></li>
+            <li><a class="dropdown-item text-white" href="#actionMovies">Action</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center ms-3">
+        <input type="text" class="form-control me-2" id="searchInput" placeholder="Search Movies & Shows" style="max-width: 300px;" />
+        <button class="btn text-white" type="button" id="searchButton">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      
+      <i class="fa fa-bell text-white me-3"></i>
+      <a href="ADD USER/index.html" target="_blank">
+        <img id="userImage" class="rounded-circle" width="35" alt="User Image">
+    </a>
+    
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION WITH BACKGROUND CAROUSEL -->
+<header class="hero text-white position-relative">
+  <!-- Bootstrap Carousel -->
+  <div id="backgroundCarousel" class="carousel slide carousel-fade w-100 h-100 position-absolute" data-bs-ride="carousel">
+    <div class="carousel-inner h-100">
+      <div class="carousel-item active">
+        <img src="media/5.png.jpg" class="d-block w-100 h-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="media/6.jpg" class="d-block w-100 h-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="media/7.jpg" class="d-block w-100 h-100" alt="..." />
+      </div>
+    
+    <div class="carousel-item">
+      <img src="media/8.jpg" class="d-block w-100 h-100" alt="..." />
+    </div>
+    <div class="carousel-item">
+      <img src="media/9.jpg" class="d-block w-100 h-100" alt="..." />
+    </div>
+    <div class="carousel-item">
+      <img src="media/10.jpg" class="d-block w-100 h-100" alt="..." />
+    </div>
+    <div class="carousel-item">
+      <img src="media/11.jpg" class="d-block w-100 h-100" alt="..." />
+    </div>
+    <div class="carousel-item">
+      <img src="media/2.jpg" class="d-block w-100 h-100" alt="..." />
+    </div>
+  </div>
+</div>
+
+  <!-- Overlay -->
+  <div class="dark-overlay"></div>
+
+  <!-- Text Content -->
+  <div class="overlay-content text-center">
+    <h1>Watch Unlimited Movies & Shows</h1>
+    <p>Join Now. Cancel Anytime.</p>
+    <button class="btn btn-danger btn-sm" onclick="window.location.href='Subscription/index.html';">Get Started</button>
+  </div>
+</header>
+
+<div class="container mt-4">
+  <h2>Trending Now</h2>
+  <div class="scrolling-wrapper" id="trendingMovies"></div>
+
+  <h2 class="mt-4" id="tvshows">TV Shows</h2>
+<div class="scrolling-wrapper" id="tvShows"></div>
+
+
+  <h2 class="mt-4" id="action">Action Movies</h2>
+  <div class="scrolling-wrapper" id="actionMovies"></div>
+
+  <h2 class="mt-4">Comedy Movies</h2>
+  <div class="scrolling-wrapper" id="comedyMovies"></div>
+
+  <h2 class="mt-4">Horror Movies</h2>
+  <div class="scrolling-wrapper" id="horrorMovies"></div>
+</div>
+
+<script>
+  const movies = {
+    trending: [
+        { title: "The Dark Knight", image: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg", video:"MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "Inception", image: "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "Interstellar", image: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "Avengers: Endgame", image: "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "Joker", image: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "Dune", image: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "Tenet", image: "https://image.tmdb.org/t/p/w500/k68nPLbIST6NP96JmTxmZijEvCA.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "Oppenheimer", image: "https://m.media-amazon.com/images/I/81218n6JFgL._SL1500_.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "Spider-Man: No Way Home", image: "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+        { title: "The Batman", image: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" }
+      ],
+
+      tvShows: [
+  { title: "Stranger Things", image: "https://image.tmdb.org/t/p/w500/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "Breaking Bad", image: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "Law & Order: Special Victims Unit", image: "https://www.themoviedb.org/t/p/w1280/abWOCrIo7bbAORxcQyOFNJdnnmR.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "The Witcher", image: "https://image.tmdb.org/t/p/w500/zrPpUlehQaBf8YX2NrVrKK8IEpf.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "Wednesday", image: "https://image.tmdb.org/t/p/w500/jeGtaMwGxPmQN5xM4ClnwPQcNQz.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "Supernatural ", image: "https://www.themoviedb.org/t/p/w1280/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "The Flash", image: "https://www.themoviedb.org/t/p/w1280/yZevl2vHQgmosfwUdVNzviIfaWS.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "Loki", image: "https://image.tmdb.org/t/p/w500/voHUmluYmKyleFkTu3lOXQG702u.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "The Mandalorian", image: "https://image.tmdb.org/t/p/w500/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+  { title: "Black Mirror", image: "https://www.themoviedb.org/t/p/w1280/seN6rRfN0I6n8iDXjlSMk1QjNcq.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" }
+],
+
+    action: [
+      { title: "Mad Max: Fury Road", image: "https://image.tmdb.org/t/p/w500/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Fight or Flight", image: "https://www.themoviedb.org/t/p/w1280/x4nWnfgJvL045rcUCSJzfgIIY9i.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Extraction", image: "https://image.tmdb.org/t/p/w500/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "The Old Guard", image: "https://image.tmdb.org/t/p/w500/cjr4NWURcVN3gW5FlHeabgBHLrY.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "F9", image: "https://image.tmdb.org/t/p/w500/bOFaAXmWWXC3Rbv4u4uM9ZSzRXP.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Black Widow", image: "https://image.tmdb.org/t/p/w500/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "The Gray Man", image: "https://image.tmdb.org/t/p/w500/8cXbitsS6dWQ5gfMTZdorpAAzEH.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Bullet Train", image: "https://image.tmdb.org/t/p/w500/tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "The Equalizer", image: "https://upload.wikimedia.org/wikipedia/hi/8/81/The_Equalizer_poster.jpg?20160711045226", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Nobody", image: "https://image.tmdb.org/t/p/w500/oBgWY00bEFeZ9N25wWVyuQddbAo.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" }
+    ],
+    comedy: [
+      { title: "Novocaine", image: "https://www.themoviedb.org/t/p/w1280/xmMHGz9dVRaMY6rRAlEX4W0Wdhm.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Mickey 17", image: "https://www.themoviedb.org/t/p/w1280/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Jumanji", image: "https://image.tmdb.org/t/p/w500/pSgXKPU5h6U89ipF7HBYajvYt7j.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Central Intelligence", image: "https://i.pinimg.com/736x/87/12/7c/87127c99bcda227a743b335a8fb9b63f.jpg", video: "MEDIA/movies/SPIDER-MAN" },
+      { title: "Free Guy", image: "https://image.tmdb.org/t/p/w500/xmbU4JTUm8rsdtn7Y3Fcm30GpeT.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "The Mask", image: "https://cdn.chili.com/images/public/cms/60/e1/07/ec/60e107ec-647c-4f54-9876-0dd1693dad09.jpg?width=495https://www.researchgate.net/profile/Dawid-Kobialka/publication/270900514/figure/fig3/AS:413158989680643@1475516187324/The-Mask-the-human-thing-downloaded-from-http-enwikipediaorg-wiki-The-Mask-film.png", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Yes Man", image: "https://content1.jdmagicbox.com/comp/jd_social/news/2018jul11/image-31383-mv89cb6o7x.jpg?fit=around|140:205&crop=140:205;*,*", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Home Alone", image: "https://wallpapers.com/images/high/home-alone-pictures-qiawie5s3twy5qoh.webp", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "The Internship", image: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ed/The-internship-poster.jpg/220px-The-internship-poster.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "The Life List", image: "https://www.themoviedb.org/t/p/w1280/2SvRwPGVpxdqpXbBicLkNTE2mGK.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" }
+    ],
+    horror: [
+      { title: "Turno nocturno", image: "https://www.themoviedb.org/t/p/w1280/iSSx9Bys64vlOkvkyKXtp19P7Re.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "It", image: "https://image.tmdb.org/t/p/w500/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Annabelle", image: "https://upload.wikimedia.org/wikipedia/en/9/90/Annabelle_film_poster.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Insidious", image: "https://i.pinimg.com/736x/a5/75/ac/a575ac2d30fcd620736111e983f37f32.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "The Nun", image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/78e3b466891157.5b26a37ceebf0.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Sinister", image: "https://i5.walmartimages.com/seo/Sinister-2-2015-11x17-Movie-Poster_b03ce88e-4703-405c-bcb5-596366497423.742b4b55f991a3447a9f48d689161e3e.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFFhttps://i.etsystatic.com/18345845/r/il/8db6e6/5700096569/il_794xN.5700096569_lpiv.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Smile", image: "https://image.tmdb.org/t/p/w500/aPqcQwu4VGEewPhagWNncDbJ9Xp.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Hereditary", image: "https://i.etsystatic.com/6285100/r/il/63521c/2457785311/il_794xN.2457785311_ls9l.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "Us", image: "https://assets.scriptslug.com/live/img/x/posters/11020/us-2019_2731b11b11.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" },
+      { title: "M3GAN", image: "https://image.tmdb.org/t/p/w500/d9nBoowhjiiYc4FBNtQkPY7c11H.jpg", video: "MEDIA/movies/SPIDER-MAN： NO WAY HOME - Official Trailer (HD).mp4" }
+    ]
+  };
+
+  
+  function loadMovies(category, elementId) {
+    const movieGrid = document.getElementById(elementId);
+    movieGrid.innerHTML = '';
+    movies[category].forEach(movie => {
+      const movieCard = document.createElement('div');
+      movieCard.className = 'movie-card';
+      movieCard.innerHTML = `
+        <img src="${movie.image}" alt="${movie.title}" onclick="playVideo('${movie.video}')">
+      `;
+      movieGrid.appendChild(movieCard);
+    });
+  }
+
+  function playVideo(filename) {
+    const isSubscribed = localStorage.getItem('isSubscribed') === 'true';
+  
+    if (isSubscribed) {
+      window.location.href = `play.html?video=${encodeURIComponent(filename)}`;
+    } else {
+      alert('Please subscribe first to watch this video.');
+      
+    }
+  }
+  
+  const navbar = document.querySelector('.navbar');
+
+  function toggleNavbarBackground() {
+    if (window.scrollY === 0) {
+      navbar.classList.add('transparent');
+    } else {
+      navbar.classList.remove('transparent');
+    }
+  }
+
+  // Run on page load
+  window.addEventListener('load', toggleNavbarBackground);
+
+  // Run on scroll
+  window.addEventListener('scroll', toggleNavbarBackground);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadMovies('trending', 'trendingMovies');
+    loadMovies('tvShows', 'tvShows');
+    loadMovies('action', 'actionMovies');
+    loadMovies('comedy', 'comedyMovies');
+    loadMovies('horror', 'horrorMovies');
+  });
+
+  // User image handling
+  const defaultImage = 'ADD USER/images/defaultuser.png';
+  const urlParams = new URLSearchParams(window.location.search);
+  const user = urlParams.get('user');
+  const image = urlParams.get('image');
+  const userImage = document.getElementById('userImage');
+
+  userImage.src = image ? `ADD USER/images/${image}` : defaultImage;
+  userImage.alt = user ? `${user}'s Avatar` : 'Default Avatar';
+
+</script>
+
+<!-- Bootstrap JS Bundle (includes Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

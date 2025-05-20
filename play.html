@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Now Playing</title>
+  <!-- Plyr CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #141414;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Vertically center */
+      align-items: center;     /* Horizontally center */
+      min-height: 100vh;       /* Full screen height */
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .plyr {
+      width: 80%;
+      max-width: 1200px;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      margin-top: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    video {
+      border: none !important;
+    }
+
+    .plyr--fullscreen-active {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 100vh !important;
+      border-radius: 0 !important;
+      border: none !important;
+      z-index: 9999;
+    }
+
+    .controls {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .controls button {
+      padding: 8px 16px;
+      background-color: #e50914;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .controls button:hover {
+      background-color: #b2070f;
+    }
+
+    .suggestions {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .suggestions img {
+      width: 160px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .suggestions img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(229, 9, 20, 0.5);
+    }
+
+    /* Subscription Modal */
+    #subscribePrompt {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .modal-content {
+      background: #181818;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-content h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #e50914;
+      margin-bottom: 15px;
+    }
+
+    .modal-content p {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .modal-content button {
+      background: #e50914;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .modal-content button:hover {
+      background: #b2070f;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <video id="player" playsinline controls>
+    <source id="videoSource" src="" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  
+
+  
+  <!-- Subscription Prompt Modal -->
+  <div id="subscribePrompt" class="fixed inset-0 hidden">
+    <div class="modal-content">
+      <h2>Unlock Your Movie Experience</h2>
+      <p>A subscription is required to watch this video. Join now to enjoy unlimited movies and shows!</p>
+      <button onclick="goToSubscribe()">Subscribe Now</button>
+    </div>
+  </div>
+
+  <!-- Plyr JS CDN -->
+  <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
+  <script>
+    const playerElement = document.getElementById('player');
+    const videoSource = document.getElementById('videoSource');
+    const modalPrompt = document.getElementById('subscribePrompt');
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoFile = urlParams.get('video');
+
+    // Subscription check
+    const isSubscribed = !!localStorage.getItem('isSubscribed');
+
+
+    if (!isSubscribed) {
+      modalPrompt.classList.remove('hidden');
+      playerElement.style.display = 'none'; // Hide player for non-subscribers
+    } else {
+      modalPrompt.style.display = 'none';
+      playerElement.style.display = 'block';
+      const player = new Plyr('#player');
+      if (videoFile) {
+        videoSource.src = videoFile;
+        playerElement.load();
+        player.play().catch(() => alert('Error playing video.'));
+        // Save to history
+        let history = JSON.parse(localStorage.getItem('videoHistory')) || [];
+        if (!history.includes(videoFile)) {
+          history.push(videoFile);
+          localStorage.setItem('videoHistory', JSON.stringify(history));
+        }
+      } else {
+        alert('No video specified.');
+        window.location.href = 'main.html';
+      }
+    }
+
+    function goToSubscribe() {
+      window.location.href = 'page4.html';
+    }
+
+    function loadMovie(path) {
+      if (!isSubscribed) {
+        modalPrompt.classList.remove('hidden');
+      } else {
+        window.location.href = `play.html?video=${encodeURIComponent(path)}`;
+      }
+    }
+
+    function goBack() {
+      let history = JSON.parse(localStorage.getItem('videoHistory')) || [];
+      if (history.length > 1) {
+        history.pop();
+        const previousVideo = history[history.length - 1];
+        window.location.href = `play.html?video=${encodeURIComponent(previousVideo)}`;
+      } else {
+        window.location.href = 'main.html';
+      }
+    }
+
+    function goHome() {
+      localStorage.removeItem('videoHistory');
+      window.location.href = 'main.html';
+    }
+  q
+  </script>
+</body>
+</html>
