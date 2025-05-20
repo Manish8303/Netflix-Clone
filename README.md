@@ -89,8 +89,8 @@ You can simply open the HTML files directly in a browser:
 
 ## 🙋‍♂️ Author
 
-**👨‍💻 Your Name**
-📧 `your.email@example.com`
+**👨‍💻 Manish Singh**
+📧 `manishsingh8303@gmail.com`
 
 📘 *This project was built as a demonstration of frontend skills and UI design principles.*
 
