@@ -1,15 +1,5 @@
 
 
-* Purely frontend-based (HTML, CSS, JavaScript)
-* Multiple HTML pages for login, signup, subscriptions, and media listing
-* Organized subfolders like `ADD USER`, `Subscription`, `Netflix Login Page`, etc.
-* Assets such as images and stylesheets
-* No backend code (Java/Servlets) or database integrations
-
-Here’s a `README.md` draft tailored to your project:
-
----
-
 # 🎬 Media Player Web Application
 
 ### 🚀 Web Frontend Project for Entertainment UI Simulation
